@@ -13,7 +13,7 @@ import javax.swing.Timer;
 
 public class Igra extends JPanel implements KeyListener, ActionListener {
 
-	private int Player1X=10, Player1Y=200,Player2X=732, Player2Y=200, BallX=Player1X+8,BallY=Player1Y+40, BalldirX=2,BalldirY=1, zakasnjenje=10,score1=0,score2=0,maxscore=10;
+	private int Player1X=10, Player1Y=200,Player2X=720, Player2Y=200, BallX=Player1X+8,BallY=Player1Y+40, BalldirX=4,BalldirY=2, zakasnjenje=10,score1=0,score2=0,maxscore=10;
 	private  boolean game=false;
 	private Timer timer;
 	
@@ -28,7 +28,7 @@ public class Igra extends JPanel implements KeyListener, ActionListener {
 	public void paint(Graphics g)
 	{
 		g.setColor(Color.gray);
-		g.fillRect(0, 0, 750, 450);
+		g.fillRect(0, 0, 740, 440);
 		
 		g.setColor(Color.cyan);
 		g.fillRect(Player1X, Player1Y, 8, 100);
@@ -39,8 +39,8 @@ public class Igra extends JPanel implements KeyListener, ActionListener {
 		
 		g.setColor(Color.orange);
 		g.setFont(new Font("calibri",Font.PLAIN,20));
-		g.drawString("score1: "+score1, 50, 10);
-		g.drawString("score2: "+score2, 670, 10);
+		g.drawString("score1: "+score1, 50, 20);
+		g.drawString("score2: "+score2, 610, 20);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -53,7 +53,7 @@ public class Igra extends JPanel implements KeyListener, ActionListener {
 			{
 				BalldirY=-BalldirY;
 			}
-			else if(BallY>430)
+			else if(BallY>420)
 			{
 				BalldirY=-BalldirY;
 			}
@@ -92,7 +92,7 @@ public class Igra extends JPanel implements KeyListener, ActionListener {
 		}
 		if(!game)
 		{
-			if(e.getKeyCode()==KeyEvent.VK_W)
+			if(e.getKeyCode()==KeyEvent.VK_W && BallX<350)
 			{
 				if(Player1Y<10)
 				{
@@ -104,11 +104,11 @@ public class Igra extends JPanel implements KeyListener, ActionListener {
 					BallY-=10;
 				}
 			}
-			else if(e.getKeyCode()==KeyEvent.VK_S)
+			else if(e.getKeyCode()==KeyEvent.VK_S && BallX<350)
 			{
-				if(Player1Y>340)
+				if(Player1Y>=330)
 				{
-					Player1Y=350;
+					Player1Y=340;
 					BallY=Player1Y+40;
 				}
 				else {
@@ -116,28 +116,28 @@ public class Igra extends JPanel implements KeyListener, ActionListener {
 					BallY+=10;
 				}
 			}
-			if(e.getKeyCode()==KeyEvent.VK_UP)
+			if(e.getKeyCode()==KeyEvent.VK_UP&& BallX>350)
 			{
-				if(Player2Y<10)
+				if(Player2Y<=10)
 				{
 					Player2Y=0;
-					BallY=Player2Y+40;
+					BallY=Player2Y+50;
 				}
 				else {
 					Player2Y-=10;
-					BallY-=10;
+					BallY-=20;
 				}
 			}
-			else if(e.getKeyCode()==KeyEvent.VK_DOWN)
+			else if(e.getKeyCode()==KeyEvent.VK_DOWN && BallX>350)
 			{
-				if(Player2Y>340)
+				if(Player2Y>=330)
 				{
-					Player2Y=350;
+					Player2Y=340;
 					BallY=Player2Y+40;
 				}
 				else {
 					Player2Y+=10;
-					BallY+=10;
+					BallY+=20;
 				}
 			}
 		}
@@ -153,8 +153,8 @@ public class Igra extends JPanel implements KeyListener, ActionListener {
 		}
 		else if(e.getKeyCode()==KeyEvent.VK_S)
 		{
-			if(Player1Y>340)
-			Player1Y=350;
+			if(Player1Y>330)
+			Player1Y=340;
 			else {
 				Player1Y+=10;
 			}
@@ -170,8 +170,8 @@ public class Igra extends JPanel implements KeyListener, ActionListener {
 		}
 		else if(e.getKeyCode()==KeyEvent.VK_DOWN)
 		{
-			if(Player2Y>340)
-			Player2Y=350;
+			if(Player2Y>330)
+			Player2Y=340;
 			else {
 				Player2Y+=10;
 			}
